@@ -1,0 +1,192 @@
+Counting Sheep
+
+input to program is integer (number of sheep)
+Output of program is string "Another sheep jumps over the fence || All sheep jumped over the fence"
+
+Input for recursion: integer(number of sheep)
+Output for recursion: "Another sheep jumps over the fence"
+
+function sheep(number) {
+  if (number <= 0) {
+    console.log("All sheep jumped over the fence");
+    return;
+  }
+  console.log("Another sheep jumps over the fence");
+  sheep(number - 1);
+}
+
+sheep(3);
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Power calculator
+Input to program are two integers, base and exponent
+output is integer of base to the power of exponent or if negative string saying 'exponent should be >=0'
+Input for recursion is a number
+Output for recursion is the recursion function with new base of previous function call...???
+
+function powerCalculator(base,exponent){
+  if(exponent <= 1){
+    console.log(base)
+    return 
+  }
+  if(exponent <=0 || base <=0){
+    return 'exponent should be >=0'
+  }
+  powerCalculator(base*base,exponent-1)
+}
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Reverse string
+
+input to program: string
+output: reversed string
+input to recursion is string with first letter removed
+output of recursion is string with first letter sent to the back
+
+how to tell when its done?????!!!!!
+
+function reverseString(string){
+  if(string===""){
+    return ""
+  }
+
+    return reverseString(string.substring(1))+string.charAt(0)
+}
+
+reverseString('string')
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+nth Triangular number
+basically given a number add it to all the numbers it contains
+
+input to program: number
+output triangular number (number plus all of the numbers less than it down to 0)
+input to recursion number which decreases one at a time until 0
+output of recursion at 0 
+
+thing to repeat: number + number - 1
+when to stop: when number = 0
+
+function triangularNumberGenerator(number){
+  if(number <= 0){
+    return
+  }
+  return triangularNumberGenerator(number-1) + number
+}
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+String splitter
+
+1. need way to turn input into an array
+2. need way to either remove or replace / with ,
+
+end: when original string length = 0
+recursion: 
+1.find index of first / str.indexOf("/")
+2.add string characters up to first / to array array.substring(0,index of /)
+3.remove everything up to and including first /  array.slice(0,index of/+1)
+4.repeat with new shortened string
+
+
+function stringSplitter(string) {
+  if (!string.includes("/")) {
+    return string;
+  }
+
+  const indexToSplit = string.indexOf("/");
+  const substring = string.substring(0, indexToSplit);
+  const splitString = string.slice(indexToSplit + 1);
+  return [substring + "," + stringSplitter(splitString)];
+}
+
+stringSplitter("20/20/2020"); //expect ['02','20,','2020']
+//got this one on my own!!!! had to look up all the methods
+//if you only put in //// it returns commas
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+Fobonacci
+
+1.way to count down from begining number (n-1)
+2.when number === 0 return
+3.else adds num1 to num2 and pushes it into list
+halp
+//////////////////////////////////////////////////////////////////////////////////////////////
+Factorial
+
+1. Exit when number = 1 (n-1)
+2.return function * number
+//got this one real quick, so much easier than fibonacci
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Maze
+1. Exit when index string = 'e'
+2.need something that can move L,R,U,D and push it into an array
+3.need part that identifies if it is the end of the array 
+4.need part to identify if ran into a *
+
+what do we take for arguements? Just the maze?
+
+1.moves:
+  Either: 
+  ends,
+  runs into wall,
+  keeps going
+
+There is one large map array of other path arrays
+
+"moving" would be testing the contents of string in array index
+"R" would be increasing index of path array
+"L" would be going back one index of path array
+"D" would be saying on same path array index but moving down one map array
+"U" would be staying on same path array index but moving up one map array
+
+a coordinate could look like [0,0] where the first number is the map array and 2nd is path array
+starting coordinate would be [0,0] ending would be max map array plus max path array
+
+
+composition of this will probably be the recursive function inside an array, which it then
+puts things into something like [mapNav()]
+
+/////////////////////////////////////////////////////////////////
+
+Anagrams
+
+
+
+
+Start with one letter and re-assemble the others in all various combinations
+move to next letter and do the same, making sure not to re-do the same one twice
+
+when all letters are done stop
+
+recursive sends 
+
+-dog-
+//total possible will be factorial recursive
+d og 
+  go 
+
+  o dg 
+  o gd
+
+    g do 
+    g od
+
+d + perm(og) + o + perm(dg) + g +perm(do)
+
+selecting just the first letters is a permutation in itself - no its a forEach
+
+end: when word.length = 0
+recursive: 
+Will this need another recursive?
+
+recursive: removes first letter from name then reorganizes other letters then puts them back together
+
+recursive(word){
+  if(!word.length){
+    return
+  }
+  const firstLetter = word.charAt(0)
+  const reorder = word.slice(1)
+  return ['firstLetter + recursive(reorder)' ]
+}//this sucessfully returns 'east' and undefined
