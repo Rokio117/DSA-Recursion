@@ -126,6 +126,9 @@ Maze
 
 what do we take for arguements? Just the maze?
 
+Think all right or all left algs, which would include a backtrack option to 
+switch directions after it backtracks
+
 1.moves:
   Either: 
   ends,
@@ -147,6 +150,11 @@ starting coordinate would be [0,0] ending would be max map array plus max path a
 composition of this will probably be the recursive function inside an array, which it then
 puts things into something like [mapNav()]
 
+functions canIMoveThere
+Function is ths the exit?
+for each direction loop = did the answer that came back to me include a list of steps?
+getsquaretype()
+ifsquaretype
 /////////////////////////////////////////////////////////////////
 
 Anagrams
@@ -179,6 +187,15 @@ selecting just the first letters is a permutation in itself - no its a forEach
 end: when word.length = 0
 recursive: 
 Will this need another recursive?
+
+function anagram(word){
+  if(word.length <=1 ){
+    return word
+  }
+  const firstLetter = word.charAt(0)
+  const reorder = word.slice(1)
+  return [ firstLetter + anagram(anagram()) ]
+}
 
 recursive: removes first letter from name then reorganizes other letters then puts them back together
 
